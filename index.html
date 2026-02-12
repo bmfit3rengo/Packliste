@@ -5,7 +5,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unsere Reise ❤️</title>
+    .heart-float {
+  position: fixed;
+  top: -10px;
+  font-size: 24px;
+  animation: fall linear forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
 <style>
+    <script>
+if (!localStorage.getItem("heartsShown")) {
+  localStorage.setItem("heartsShown", "yes");
+
+  for (let i = 0; i < 25; i++) {
+    setTimeout(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart-float";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+      heart.style.fontSize = 16 + Math.random() * 24 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, i * 150);
+  }
+}
+</script>
 body{
     font-family: Arial, sans-serif;
     background: linear-gradient(to bottom, #ffe6f0, #ffffff);
